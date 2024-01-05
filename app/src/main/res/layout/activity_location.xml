@@ -65,7 +65,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="50dp"
-            android:fontFamily="@font/lato"
+            android:fontFamily="@font/lato_regular"
             android:gravity="left"
             android:padding="5dp"
             android:text="@string/locationTxt"
