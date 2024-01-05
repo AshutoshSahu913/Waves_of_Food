@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.wavesoffood.DataClass.FoodModel
 import com.example.wavesoffood.databinding.BuyAgainItemBinding
 
-class BuyAgainAdapter(var list: ArrayList<FoodModel>) :
+class BuyAgainAdapter(private var list: ArrayList<FoodModel>) :
     RecyclerView.Adapter<BuyAgainAdapter.viewHolder>() {
 
     inner class viewHolder(val binding: BuyAgainItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -27,19 +27,19 @@ class BuyAgainAdapter(var list: ArrayList<FoodModel>) :
         holder.binding.buyAgainFoodName.text = foodModel.foodName
         holder.binding.buyAgainFoodPrice.text = foodModel.foodPrice
 
-        /*holder.binding.buyAgainFoodBtn.setOnClickListener {
-             Toast.makeText(
-context,
+        holder.binding.buyAgainFoodBtn.setOnClickListener {
+            Toast.makeText(
+                holder.itemView.context,
                 "Buy Again",
                 Toast.LENGTH_SHORT
-            ).show()*/
+            ).show()
+        }
     }
+        override fun getItemCount(): Int {
+            return list.size
+        }
 
-    override fun getItemCount(): Int {
-        return list.size
     }
-
-}
 
 
 

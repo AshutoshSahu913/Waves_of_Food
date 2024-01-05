@@ -17,21 +17,28 @@ import com.example.wavesoffood.databinding.FragmentHomeBinding
 import com.google.android.material.slider.Slider
 
 class HomeFragment : Fragment() {
-    private val binding: FragmentHomeBinding by lazy {
-        FragmentHomeBinding.inflate(layoutInflater)
-    }
+    lateinit var binding: FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
+        arguments?.let {}
+
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+
         // Inflate the layout for this fragment
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         //add imageSlider is here
         val imageList = ArrayList<SlideModel>()
@@ -71,7 +78,5 @@ class HomeFragment : Fragment() {
         binding.rvPopularItem.layoutManager = LinearLayoutManager(requireContext())
         binding.rvPopularItem.adapter = adapter
 
-        return binding.root
     }
-
 }

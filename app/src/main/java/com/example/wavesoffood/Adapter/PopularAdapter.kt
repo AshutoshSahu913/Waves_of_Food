@@ -2,6 +2,7 @@ package com.example.wavesoffood.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wavesoffood.DataClass.FoodModel
 import com.example.wavesoffood.databinding.PopularItemBinding
@@ -21,6 +22,9 @@ class PopularAdapter(private val list: ArrayList<FoodModel>) :
         holder.binding.foodImg.setImageResource(model.foodImg)
         holder.binding.foodName.text = model.foodName
         holder.binding.foodPrice.text = model.foodPrice
+        holder.binding.addToCartBtn.setOnClickListener {
+            Toast.makeText(holder.itemView.context, "Added to Cart", Toast.LENGTH_SHORT).show();
+        }
     }
 
     override fun getItemCount(): Int {
