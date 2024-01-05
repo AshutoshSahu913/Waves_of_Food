@@ -42,6 +42,7 @@ class CartFragment : Fragment() {
         binding.rvCart.adapter = adapter
 
 
+
         return binding.root
     }
 
