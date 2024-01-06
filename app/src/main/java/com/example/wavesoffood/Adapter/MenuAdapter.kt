@@ -7,10 +7,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.wavesoffood.DataClass.FoodModel
 import com.example.wavesoffood.databinding.MenuItemBinding
 
-class MenuAdapter(var menuList: ArrayList<FoodModel>) :
+class MenuAdapter(private var menuList: ArrayList<FoodModel>) :
     RecyclerView.Adapter<MenuAdapter.viewHolder>() {
 
-    inner class viewHolder(var binding: MenuItemBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class viewHolder(var binding: MenuItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(position: Int) {
+            val model = menuList[position]
+            binding.menuFoodImg.setImageResource(model.foodImg)
+            binding.menuFoodName.text = model.foodName
+            binding.menuFoodPrice.text = model.foodPrice
+            binding.menuAddToCartBtn.setOnClickListener {
+                Toast.makeText(itemView.context, "Add Menu Items", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuAdapter.viewHolder {
         val binding = MenuItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -18,13 +28,7 @@ class MenuAdapter(var menuList: ArrayList<FoodModel>) :
     }
 
     override fun onBindViewHolder(holder: MenuAdapter.viewHolder, position: Int) {
-        var model = menuList[position]
-        holder.binding.menuFoodImg.setImageResource(model.foodImg)
-        holder.binding.menuFoodName.text = model.foodName
-        holder.binding.menuFoodPrice.text = model.foodPrice
-        holder.binding.menuAddToCartBtn.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "Add Menu Items", Toast.LENGTH_SHORT).show();
-        }
+        holder.bind(position)
     }
 
     override fun getItemCount(): Int {

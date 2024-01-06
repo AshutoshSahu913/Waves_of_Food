@@ -1,11 +1,11 @@
 package com.example.wavesoffood.Fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
@@ -14,7 +14,7 @@ import com.example.wavesoffood.Adapter.PopularAdapter
 import com.example.wavesoffood.DataClass.FoodModel
 import com.example.wavesoffood.R
 import com.example.wavesoffood.databinding.FragmentHomeBinding
-import com.google.android.material.slider.Slider
+
 
 class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
@@ -33,12 +33,18 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
 
+        //for AllViewItems
+        binding.viewAllMenuTxt.setOnClickListener {
+            val bottomSheetFragment = MenuBottomSheetFragment()
+            bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
+        }
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         //add imageSlider is here
         val imageList = ArrayList<SlideModel>()
@@ -62,8 +68,6 @@ class HomeFragment : Fragment() {
             }
 
         })
-
-
         // add recycler view food items
         val list = ArrayList<FoodModel>()
         list.add(FoodModel(R.drawable.menu1, "Donuts", "₹ 99"))
