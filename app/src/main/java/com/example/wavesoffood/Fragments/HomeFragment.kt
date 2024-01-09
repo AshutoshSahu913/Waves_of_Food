@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
+import com.example.wavesoffood.Adapter.NotificationAdapter
 import com.example.wavesoffood.Adapter.PopularAdapter
 import com.example.wavesoffood.DataClass.FoodModel
+import com.example.wavesoffood.DataClass.NotificationModel
 import com.example.wavesoffood.R
 import com.example.wavesoffood.databinding.FragmentHomeBinding
 
@@ -38,6 +40,9 @@ class HomeFragment : Fragment() {
             val bottomSheetFragment = MenuBottomSheetFragment()
             bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
         }
+
+
+
 
         return binding.root
     }
@@ -81,6 +86,7 @@ class HomeFragment : Fragment() {
         var adapter = PopularAdapter(list)
         binding.rvPopularItem.layoutManager = LinearLayoutManager(requireContext())
         binding.rvPopularItem.adapter = adapter
+
 
     }
 }

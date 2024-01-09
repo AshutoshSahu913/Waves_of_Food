@@ -92,4 +92,4 @@ class SearchFragment : Fragment() {
         // Update the adapter with the filteredList
         adapter.notifyDataSetChanged()
     }
-}s
+}
