@@ -83,7 +83,7 @@ class HomeFragment : Fragment() {
         list.add(FoodModel(R.drawable.menu6, "Rools", "₹ 59"))
         list.add(FoodModel(R.drawable.menu7, "Fruits", "₹ 99"))
 
-        var adapter = PopularAdapter(list)
+        var adapter = PopularAdapter(list, requireContext())
         binding.rvPopularItem.layoutManager = LinearLayoutManager(requireContext())
         binding.rvPopularItem.adapter = adapter
 

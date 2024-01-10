@@ -55,7 +55,7 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
         listMenu.add(FoodModel(R.drawable.menu6, "Rools", "₹ 59"))
         listMenu.add(FoodModel(R.drawable.menu7, "Fruits", "₹ 99"))
 
-        var adapter = MenuAdapter(listMenu)
+        var adapter = MenuAdapter(listMenu, requireContext())
         binding.rvMenu.layoutManager = LinearLayoutManager(requireContext())
         binding.rvMenu.adapter = adapter
     }

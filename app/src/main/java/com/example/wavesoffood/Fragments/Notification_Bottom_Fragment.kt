@@ -9,7 +9,6 @@ import com.example.wavesoffood.Adapter.NotificationAdapter
 import com.example.wavesoffood.DataClass.NotificationModel
 import com.example.wavesoffood.R
 import com.example.wavesoffood.databinding.FragmentNotificationBottomBinding
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class Notification_Bottom_Fragment : BottomSheetDialogFragment() {
@@ -37,7 +36,7 @@ class Notification_Bottom_Fragment : BottomSheetDialogFragment() {
             )
         )
         notiList.add(NotificationModel(R.drawable.truck, "Order has been taken by the driver"))
-        notiList.add(NotificationModel(R.drawable.congrats, "Congrats Your Order Placed"))
+        notiList.add(NotificationModel(R.drawable.congrat, "Congrats Your Order Placed"))
 
         val adapter2 = NotificationAdapter(notiList)
         binding.rvNotification.layoutManager = LinearLayoutManager(requireContext())

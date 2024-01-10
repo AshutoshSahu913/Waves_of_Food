@@ -39,9 +39,9 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:fontFamily="@font/lato_regular"
+            android:hint="User ka name"
             android:inputType="textPersonName"
             android:padding="10dp"
-            android:text="User ka name"
             android:textColor="@color/black"
             android:textSize="14sp" />
     </LinearLayout>
@@ -79,11 +79,11 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:fontFamily="@font/lato_regular"
-            android:padding="10dp"
-            android:text="Lorem ipsum is placeholder text
+            android:hint="Lorem ipsum is placeholder text
 commonly used in the graphic,
 print, and publishing industries
 for previewing layouts and visual "
+            android:padding="10dp"
 
             android:textColor="@color/black"
             android:textSize="14sp" />
@@ -122,10 +122,10 @@ for previewing layouts and visual "
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:fontFamily="@font/lato_regular"
+            android:hint="1234567890"
             android:inputType="phone"
             android:maxLength="10"
             android:padding="10dp"
-            android:text="1234567890"
             android:textColor="@color/black"
             android:textSize="14sp" />
     </LinearLayout>
@@ -166,9 +166,9 @@ for previewing layouts and visual "
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:fontFamily="@font/lato_regular"
+            android:hint="user@gmail.com"
             android:inputType="textEmailAddress"
             android:padding="10dp"
-            android:text="user@gmail.com"
             android:textColor="@color/black"
             android:textSize="14sp" />
     </LinearLayout>
@@ -182,10 +182,10 @@ for previewing layouts and visual "
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/edittextshape"
+        android:elevation="5dp"
         android:fontFamily="@font/yeonsung_regular"
         android:gravity="center"
         android:text="Save Information"
-        android:elevation="5dp"
         android:textAllCaps="false"
         android:textColor="@color/appColor"
         android:textSize="15sp"

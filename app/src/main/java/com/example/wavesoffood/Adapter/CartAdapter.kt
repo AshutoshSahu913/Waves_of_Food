@@ -30,7 +30,6 @@ class CartAdapter(private var cartList: ArrayList<FoodModel>) :
             }
         }
 
-
         private fun deceaseQuantity(position: Int) {
             if (itemQuantities[position] > 1) {
                 itemQuantities[position]--
@@ -43,7 +42,6 @@ class CartAdapter(private var cartList: ArrayList<FoodModel>) :
             if (itemQuantities[position] < 10) {
                 itemQuantities[position]++
                 binding.itemQuantity.text = itemQuantities[position].toString()
-
             }
         }
 

@@ -22,4 +22,11 @@
     <string name="_1">1</string>
     <string name="previously_buy">Previously Buy</string>
     <string name="recent_buy">Recent Buy</string>
+    <string name="go_home">Go Home</string>
+    <string name="congrats_nyour_order_placed">Congrats\nYour Order Placed</string>
+    <string name="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="food_name">Food Name</string>
+    <string name="short_des">Short Description</string>
+    <string name="notification">Notification</string>
 </resources>

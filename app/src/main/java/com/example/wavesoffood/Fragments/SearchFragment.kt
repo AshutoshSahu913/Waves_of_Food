@@ -42,7 +42,7 @@ class SearchFragment : Fragment() {
 
         filteredList.addAll(originalList)
 
-        adapter = MenuAdapter(filteredList)
+        adapter = MenuAdapter(filteredList,requireContext())
         binding.rvSearchMenu.layoutManager = LinearLayoutManager(requireContext())
         binding.rvSearchMenu.adapter = adapter
 
