@@ -5,15 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Fragments.ProfileFragment">
+    tools:context=".PayOutActivity">
+
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/arrow_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/yeonsung_regular"
+        android:text="Edit"
+        android:textColor="@color/appColor"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <LinearLayout
         android:id="@+id/linearLayout11"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/profile_text_shape"
         android:elevation="2dp"
         android:gravity="center"
@@ -21,7 +47,7 @@
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/txt">
 
         <TextView
             android:layout_width="100dp"
@@ -34,14 +60,14 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/edName"
+            android:id="@+id/payOutEdName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:fontFamily="@font/lato_regular"
+            android:hint="User ka name"
             android:inputType="textPersonName"
             android:padding="10dp"
-            android:text="User ka name"
             android:textColor="@color/black"
             android:textSize="14sp" />
     </LinearLayout>
@@ -74,17 +100,16 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/edAddress"
+            android:id="@+id/payOutEdAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:fontFamily="@font/lato_regular"
-            android:padding="10dp"
-            android:text="Lorem ipsum is placeholder text
+            android:hint="Lorem ipsum is placeholder text
 commonly used in the graphic,
 print, and publishing industries
 for previewing layouts and visual "
-
+            android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="14sp" />
     </LinearLayout>
@@ -117,23 +142,21 @@ for previewing layouts and visual "
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/edPhone"
+            android:id="@+id/payOutEdPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:fontFamily="@font/lato_regular"
+            android:hint="1234567890"
             android:inputType="phone"
             android:maxLength="10"
             android:padding="10dp"
-            android:text="1234567890"
             android:textColor="@color/black"
             android:textSize="14sp" />
     </LinearLayout>
 
 
     <LinearLayout
-
-
         android:id="@+id/linearLayout14"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -144,7 +167,6 @@ for previewing layouts and visual "
         android:elevation="2dp"
         android:gravity="center"
         android:orientation="horizontal"
-
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -154,43 +176,77 @@ for previewing layouts and visual "
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_weight="1"
             android:fontFamily="@font/yeonsung_regular"
-            android:text="Name"
-            android:textColor="@color/black"
-
+            android:text="Payment Method"
+            android:textColor="#663B3B3B"
             android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/edEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/lato_regular"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:text="user@gmail.com"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:src="@drawable/cashondelivery" />
     </LinearLayout>
 
 
+    <LinearLayout
+        android:id="@+id/linearLayout10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/profile_text_shape"
+        android:elevation="2dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout14">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/yeonsung_regular"
+            android:text="Total Amount"
+            android:textColor="#663B3B3B"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/menuFoodPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/yeonsung_regular"
+            android:text="₹ 150"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/appColor"
+            android:textSize="22sp" />
+    </LinearLayout>
+
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/saveInfoBtn"
+        android:id="@+id/placeOrderBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:elevation="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/edittextshape"
         android:fontFamily="@font/yeonsung_regular"
         android:gravity="center"
-        android:text="Save Information"
-        android:elevation="5dp"
+        android:text="Place My Order"
         android:textAllCaps="false"
         android:textColor="@color/appColor"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout10" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

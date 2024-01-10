@@ -30,15 +30,17 @@
             android:layout_weight="1" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/proceedBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/whitebutton"
+            android:background="@drawable/edittextshape"
             android:fontFamily="@font/yeonsung_regular"
             android:gravity="center"
+            android:textAllCaps="false"
             android:text="Proceed"
             android:textColor="@color/appColor"
             android:textSize="15sp"
