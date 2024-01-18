@@ -22,7 +22,7 @@ class PopularAdapter(private val list: ArrayList<FoodModel>, var requiredContext
     override fun onBindViewHolder(holder: PopularAdapter.viewHolder, position: Int) {
 
         var model = list[position]
-        holder.binding.foodImg.setImageResource(model.foodImg)
+//        holder.binding.foodImg.setImageResource(model.foodImg)
         holder.binding.foodName.text = model.foodName
         holder.binding.foodPrice.text = model.foodPrice
         holder.binding.addToCartBtn.setOnClickListener {
@@ -31,7 +31,7 @@ class PopularAdapter(private val list: ArrayList<FoodModel>, var requiredContext
         holder.itemView.setOnClickListener {
             val intent = Intent(requiredContext, DetailsActivity::class.java)
             intent.putExtra("menuFoodName", model.foodName)
-            intent.putExtra("menuFoodImg", model.foodImg)
+//            intent.putExtra("menuFoodImg", model.foodImg)
             requiredContext.startActivity(intent)
         }
     }

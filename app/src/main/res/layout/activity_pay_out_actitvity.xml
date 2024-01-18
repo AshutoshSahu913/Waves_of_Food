@@ -12,7 +12,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
         android:src="@drawable/arrow_left"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,14 +23,13 @@
         android:id="@+id/txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:fontFamily="@font/yeonsung_regular"
         android:text="Edit"
         android:textColor="@color/appColor"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/backBtn" />
 
 
     <LinearLayout
@@ -179,7 +178,7 @@ for previewing layouts and visual "
             android:layout_weight="1"
             android:fontFamily="@font/yeonsung_regular"
             android:text="Payment Method"
-            android:textColor="#663B3B3B"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <ImageView
@@ -213,7 +212,7 @@ for previewing layouts and visual "
             android:layout_weight="1"
             android:fontFamily="@font/yeonsung_regular"
             android:text="Total Amount"
-            android:textColor="#663B3B3B"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <TextView

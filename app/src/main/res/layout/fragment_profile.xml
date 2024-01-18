@@ -30,7 +30,6 @@
             android:fontFamily="@font/yeonsung_regular"
             android:text="Name"
             android:textColor="@color/black"
-
             android:textSize="20sp" />
 
         <EditText
@@ -47,7 +46,6 @@
     </LinearLayout>
 
     <LinearLayout
-
         android:id="@+id/linearLayout12"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -84,13 +82,11 @@ commonly used in the graphic,
 print, and publishing industries
 for previewing layouts and visual "
             android:padding="10dp"
-
             android:textColor="@color/black"
             android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
-
         android:id="@+id/linearLayout13"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -132,8 +128,6 @@ for previewing layouts and visual "
 
 
     <LinearLayout
-
-
         android:id="@+id/linearLayout14"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -144,7 +138,6 @@ for previewing layouts and visual "
         android:elevation="2dp"
         android:gravity="center"
         android:orientation="horizontal"
-
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -155,9 +148,8 @@ for previewing layouts and visual "
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/yeonsung_regular"
-            android:text="Name"
+            android:text="Email"
             android:textColor="@color/black"
-
             android:textSize="20sp" />
 
         <EditText
@@ -172,7 +164,6 @@ for previewing layouts and visual "
             android:textColor="@color/black"
             android:textSize="14sp" />
     </LinearLayout>
-
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/saveInfoBtn"

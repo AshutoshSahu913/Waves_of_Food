@@ -1,8 +1,10 @@
 package com.example.wavesoffood.DataClass
 
 data class FoodModel(
-    var foodImg: Int,
-    var foodName: String,
-    var foodPrice: String
+    var foodName: String? = null,
+    var foodPrice: String? = null,
+    var foodDescription: String? = null,
+    var foodImg: String? = null,
+    var foodIngredients: String? = null
 
 )

@@ -27,6 +27,7 @@
     <string name="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</string>
     <string name="add_to_cart">Add to Cart</string>
     <string name="food_name">Food Name</string>
+    <string name="your_web_client_id" translatable="false">636076344069-6t9jvmnm0sip4v6o5bvcfulasv2q9ha0.apps.googleusercontent.com</string>
     <string name="short_des">Short Description</string>
     <string name="notification">Notification</string>
 </resources>

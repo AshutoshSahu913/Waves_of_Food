@@ -31,13 +31,13 @@ class CartFragment : Fragment() {
 
         // add recycler view food items
         val list = ArrayList<FoodModel>()
-        list.add(FoodModel(R.drawable.menu1, "Donuts", "₹ 99"))
-        list.add(FoodModel(R.drawable.menu2, "Salad", "₹ 69"))
-        list.add(FoodModel(R.drawable.menu3, "Ice Cream", "₹ 49"))
-        list.add(FoodModel(R.drawable.menu4, "Soop", "₹ 69"))
-        list.add(FoodModel(R.drawable.menu5, "Pasta", "₹ 99"))
-        list.add(FoodModel(R.drawable.menu6, "Rools", "₹ 59"))
-        list.add(FoodModel(R.drawable.menu7, "Fruits", "₹ 99"))
+//        list.add(FoodModel(R.drawable.menu1, "Donuts", "₹ 99"))
+//        list.add(FoodModel(R.drawable.menu2, "Salad", "₹ 69"))
+//        list.add(FoodModel(R.drawable.menu3, "Ice Cream", "₹ 49"))
+//        list.add(FoodModel(R.drawable.menu4, "Soop", "₹ 69"))
+//        list.add(FoodModel(R.drawable.menu5, "Pasta", "₹ 99"))
+//        list.add(FoodModel(R.drawable.menu6, "Rools", "₹ 59"))
+//        list.add(FoodModel(R.drawable.menu7, "Fruits", "₹ 99"))
 
         var adapter = CartAdapter(list)
         binding.rvCart.layoutManager = LinearLayoutManager(requireContext())

@@ -31,14 +31,14 @@ class SearchFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentSearchBinding.inflate(inflater, container, false)
-        originalList.add(FoodModel(R.drawable.menu1, "Donuts", "₹ 99"))
-        originalList.add(FoodModel(R.drawable.menu2, "Salad", "₹ 69"))
-        originalList.add(FoodModel(R.drawable.menu3, "Ice Cream", "₹ 49"))
-        originalList.add(FoodModel(R.drawable.menu4, "Soop", "₹ 69"))
-        originalList.add(FoodModel(R.drawable.menu5, "Pasta", "₹ 99"))
-        originalList.add(FoodModel(R.drawable.menu6, "Rools", "₹ 59"))
-        originalList.add(FoodModel(R.drawable.menu7, "Fruits", "₹ 99"))
-        originalList.add(FoodModel(R.drawable.menu1, "Donuts", "₹ 99"))
+//        originalList.add(FoodModel(R.drawable.menu1, "Donuts", "₹ 99"))
+//        originalList.add(FoodModel(R.drawable.menu2, "Salad", "₹ 69"))
+//        originalList.add(FoodModel(R.drawable.menu3, "Ice Cream", "₹ 49"))
+//        originalList.add(FoodModel(R.drawable.menu4, "Soop", "₹ 69"))
+//        originalList.add(FoodModel(R.drawable.menu5, "Pasta", "₹ 99"))
+//        originalList.add(FoodModel(R.drawable.menu6, "Rools", "₹ 59"))
+//        originalList.add(FoodModel(R.drawable.menu7, "Fruits", "₹ 99"))
+//        originalList.add(FoodModel(R.drawable.menu1, "Donuts", "₹ 99"))
 
         filteredList.addAll(originalList)
 
@@ -84,11 +84,11 @@ class SearchFragment : Fragment() {
         filteredList.clear()
 
         //Add matching items to the filteredList
-        originalList.forEach { foodModel ->
-            if (foodModel.foodName.contains(query.toString().orEmpty(), ignoreCase = true)) {
-                filteredList.add(foodModel)
-            }
-        }
+//        originalList.forEach { foodModel ->
+//            if (foodModel.foodName.contains(query.toString().orEmpty(), ignoreCase = true)) {
+//                filteredList.add(foodModel)
+//            }
+//        }
         // Update the adapter with the filteredList
         adapter.notifyDataSetChanged()
     }

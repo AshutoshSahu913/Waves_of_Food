@@ -23,7 +23,7 @@ class BuyAgainAdapter(private var list: ArrayList<FoodModel>) :
 
 
         val foodModel = list[position]
-        holder.binding.buyAgainFoodImg.setImageResource(foodModel.foodImg)
+//        holder.binding.buyAgainFoodImg.setImageResource(foodModel.foodImgUrl)
         holder.binding.buyAgainFoodName.text = foodModel.foodName
         holder.binding.buyAgainFoodPrice.text = foodModel.foodPrice
 

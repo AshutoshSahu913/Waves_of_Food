@@ -63,7 +63,7 @@ class CartAdapter(private var cartList: ArrayList<FoodModel>) :
     override fun onBindViewHolder(holder: CartAdapter.viewHolder, position: Int) {
         holder.bind(position)
         var model = cartList.get(position)
-        holder.binding.cartFoodImg.setImageResource(model.foodImg)
+//        holder.binding.cartFoodImg.setImageResource(model.foodImg)
         holder.binding.cartFoodName.text = model.foodName
         holder.binding.cartFoodPrice.text = model.foodPrice
 

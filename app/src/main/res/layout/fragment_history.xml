@@ -58,7 +58,7 @@
                         android:id="@+id/menuFoodImg"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/menu3" />
                 </androidx.cardview.widget.CardView>
 
                 <LinearLayout
@@ -75,7 +75,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:fontFamily="@font/yeonsung_regular"
-                        android:text="Item name"
+                        android:text="Ice-cream"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
@@ -85,7 +85,7 @@
                         android:layout_height="30dp"
                         android:layout_marginStart="15dp"
                         android:fontFamily="@font/yeonsung_regular"
-                        android:text="₹ 150"
+                        android:text="₹ 50"
                         android:textColor="@color/appColor"
                         android:textSize="20sp" />
 
