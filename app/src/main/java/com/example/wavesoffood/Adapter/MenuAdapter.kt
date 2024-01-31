@@ -1,12 +1,10 @@
 package com.example.wavesoffood.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.view.ContextMenu
 import android.view.LayoutInflater
-import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +13,7 @@ import com.example.wavesoffood.DataClass.FoodModel
 import com.example.wavesoffood.DetailsActivity
 import com.example.wavesoffood.databinding.MenuItemBinding
 
-class MenuAdapter(private var menuList: MutableList<FoodModel>, var requiredContext: Context) :
+class MenuAdapter(private var menuList: List<FoodModel>, var requiredContext: Context) :
     RecyclerView.Adapter<MenuAdapter.viewHolder>() {
     inner class viewHolder(var binding: MenuItemBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
@@ -33,7 +31,7 @@ class MenuAdapter(private var menuList: MutableList<FoodModel>, var requiredCont
             val intent = Intent(requiredContext, DetailsActivity::class.java).apply {
                 putExtra("menuItemName", menuItem.foodName)
                 putExtra("menuItemPrice", menuItem.foodPrice)
-                putExtra("menuItemDes", menuItem.foodDescription)
+                putExtra("menuItemDes", menuItem.foodDes)
                 putExtra("menuItemIngredients", menuItem.foodIngredients)
                 putExtra("menuItemImg", menuItem.foodImg)
             }
@@ -42,16 +40,17 @@ class MenuAdapter(private var menuList: MutableList<FoodModel>, var requiredCont
         }
 
         //set data into recyclerView name, price, image
+        @SuppressLint("SetTextI18n")
         fun bind(position: Int) {
             val model = menuList[position]
             binding.menuFoodName.text = model.foodName
-            binding.menuFoodPrice.text = model.foodPrice
+            binding.menuFoodPrice.text = "₹ ${model.foodPrice}"
 
             val uri = Uri.parse(model.foodImg)
             Glide.with(requiredContext).load(uri).into(binding.menuFoodImg)
 
             binding.menuAddToCartBtn.setOnClickListener {
-                Toast.makeText(itemView.context, "Add Menu Items", Toast.LENGTH_SHORT).show();
+                Toast.makeText(itemView.context, "Add Item To Cart", Toast.LENGTH_SHORT).show();
             }
 
         }

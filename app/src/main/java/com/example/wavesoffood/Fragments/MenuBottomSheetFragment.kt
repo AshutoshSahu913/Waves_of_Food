@@ -57,7 +57,6 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
         foodRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (foodSnapshot in snapshot.children) {
-
                     val menuItem = foodSnapshot.getValue(FoodModel::class.java)
                     menuItem?.let { menuList.add(it) }
                 }

@@ -10,7 +10,6 @@ import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wavesoffood.Adapter.MenuAdapter
 import com.example.wavesoffood.DataClass.FoodModel
-import com.example.wavesoffood.R
 import com.example.wavesoffood.databinding.FragmentSearchBinding
 
 class SearchFragment : Fragment() {
