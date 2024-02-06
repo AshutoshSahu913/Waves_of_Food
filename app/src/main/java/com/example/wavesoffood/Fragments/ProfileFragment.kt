@@ -42,13 +42,29 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUserData()
 
-        binding.saveInfoBtn.setOnClickListener {
-            val name = binding.profileEdName.text.toString()
-            val email = binding.profileEdEmail.text.toString()
-            val address = binding.profileEdAddress.text.toString()
-            val phone = binding.profileEdPhone.text.toString()
+        binding.apply {
 
-            updateUserData(name, email, address, phone)
+
+            saveInfoBtn.setOnClickListener {
+                val name = binding.profileEdName.text.toString()
+                val email = binding.profileEdEmail.text.toString()
+                val address = binding.profileEdAddress.text.toString()
+                val phone = binding.profileEdPhone.text.toString()
+
+                updateUserData(name, email, address, phone)
+            }
+            profileEdName.isEnabled = false
+            profileEdEmail.isEnabled = false
+            profileEdAddress.isEnabled = false
+            profileEdPhone.isEnabled = false
+
+            editProfileBtn.setOnClickListener {
+                profileEdName.isEnabled = !profileEdName.isEnabled
+                profileEdEmail.isEnabled = !profileEdEmail.isEnabled
+                profileEdAddress.isEnabled = !profileEdAddress.isEnabled
+                profileEdPhone.isEnabled = !profileEdPhone.isEnabled
+                profileEdName.requestFocus()
+            }
         }
     }
 
@@ -64,10 +80,15 @@ class ProfileFragment : Fragment() {
             )
 
             userReference.setValue(userData).addOnSuccessListener {
-                Toast.makeText(requireContext(),"Profile Update Successfully !",Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Profile Update Successfully !",
+                    Toast.LENGTH_SHORT
+                ).show()
 
             }.addOnFailureListener {
-                Toast.makeText(requireContext(),"Profile Update Failed !",Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Profile Update Failed !", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
