@@ -30,4 +30,5 @@
     <string name="your_web_client_id" translatable="false">636076344069-6t9jvmnm0sip4v6o5bvcfulasv2q9ha0.apps.googleusercontent.com</string>
     <string name="short_des">Short Description</string>
     <string name="notification">Notification</string>
+    <string name="recent_buy_items">Recent Buy Items</string>
 </resources>

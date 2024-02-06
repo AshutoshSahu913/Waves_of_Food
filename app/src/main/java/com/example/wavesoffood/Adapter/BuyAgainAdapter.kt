@@ -1,17 +1,48 @@
 package com.example.wavesoffood.Adapter
 
+import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.contentValuesOf
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.wavesoffood.DataClass.FoodModel
 import com.example.wavesoffood.databinding.BuyAgainItemBinding
 
-class BuyAgainAdapter(private var list: ArrayList<FoodModel>) :
+class BuyAgainAdapter(
+    private var againFoodName: MutableList<String>,
+    private var againFoodPrice: MutableList<String>,
+    private var againFoodImg: MutableList<String>,
+    var context: Context
+
+) :
     RecyclerView.Adapter<BuyAgainAdapter.viewHolder>() {
 
-    inner class viewHolder(val binding: BuyAgainItemBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class viewHolder(val binding: BuyAgainItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(foodName: String, foodPrice: String, foodImg: String) {
+
+            binding.apply {
+                buyAgainFoodName.text = foodName
+                buyAgainFoodPrice.text = foodPrice
+                //load image using Glide
+                val uriString = foodImg
+                val uri = Uri.parse(uriString)
+                Glide.with(context).load(uri).into(binding.buyAgainFoodImg)
+
+
+                binding.buyAgainFoodBtn.setOnClickListener {
+                    Toast.makeText(
+                        context,
+                        "Buy Again",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BuyAgainAdapter.viewHolder {
         val binding =
@@ -21,25 +52,19 @@ class BuyAgainAdapter(private var list: ArrayList<FoodModel>) :
 
     override fun onBindViewHolder(holder: BuyAgainAdapter.viewHolder, position: Int) {
 
-
-        val foodModel = list[position]
+        holder.bind(
+            againFoodName[position],
+            againFoodPrice[position],
+            againFoodImg[position]
+        )
 //        holder.binding.buyAgainFoodImg.setImageResource(foodModel.foodImgUrl)
-        holder.binding.buyAgainFoodName.text = foodModel.foodName
-        holder.binding.buyAgainFoodPrice.text = foodModel.foodPrice
-
-        holder.binding.buyAgainFoodBtn.setOnClickListener {
-            Toast.makeText(
-                holder.itemView.context,
-                "Buy Again",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
     }
-        override fun getItemCount(): Int {
-            return list.size
-        }
 
+    override fun getItemCount(): Int {
+        return againFoodName.size
     }
+
+}
 
 
 

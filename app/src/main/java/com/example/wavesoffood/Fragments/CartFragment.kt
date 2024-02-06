@@ -170,14 +170,14 @@ class CartFragment : Fragment() {
 //                } else {
 //                    binding.rvCart.visibility = View.VISIBLE
 //                    binding.emptyCart.visibility = View.GONE
-                    setAdapter(
-                        cartFoodNames,
-                        cartFoodPrices,
-                        cartFoodDescription,
-                        cartFoodImages,
-                        cartFoodQuantities,
-                        cartFoodIngredients
-                    )
+                setAdapter(
+                    cartFoodNames,
+                    cartFoodPrices,
+                    cartFoodDescription,
+                    cartFoodImages,
+                    cartFoodQuantities,
+                    cartFoodIngredients
+                )
 //                }
 
             }
@@ -190,18 +190,19 @@ class CartFragment : Fragment() {
                 foodQty: MutableList<Int>,
                 foodIngredients: MutableList<String>
             ) {
-                cartAdapter = CartAdapter(
-                    requireContext(),
-                    foodName,
-                    foodPrice,
-                    foodDes,
-                    foodImg,
-                    foodQty,
-                    foodIngredients
-                )
-                binding.rvCart.layoutManager = LinearLayoutManager(requireContext())
-                binding.rvCart.adapter = cartAdapter
-
+                if (isAdded && context != null) {
+                    cartAdapter = CartAdapter(
+                        requireContext(),
+                        foodName,
+                        foodPrice,
+                        foodDes,
+                        foodImg,
+                        foodQty,
+                        foodIngredients
+                    )
+                    binding.rvCart.layoutManager = LinearLayoutManager(requireContext())
+                    binding.rvCart.adapter = cartAdapter
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {

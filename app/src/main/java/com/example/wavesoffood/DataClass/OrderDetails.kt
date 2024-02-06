@@ -3,9 +3,10 @@ package com.example.wavesoffood.DataClass
 import android.os.Parcel
 import android.os.Parcelable
 import android.provider.ContactsContract.CommonDataKinds.StructuredName
+import java.io.Serializable
 import java.util.ArrayList
 
-class OrderDetails() : Parcelable {
+class OrderDetails() : Serializable {
     var userUid: String? = null
     var userName: String? = null
     var foodNames: MutableList<String>? = null
@@ -46,23 +47,23 @@ class OrderDetails() : Parcelable {
         itemPushKey: String?,
         b: Boolean,
         b1: Boolean
-    ) : this(){
-        this.userUid=userId
-        this.userName=name
-        this.foodNames=fName
-        this.foodPrices=fPrice
-        this.foodImages=fImg
-        this.foodQty=fQty
-        this.address=address
-        this.totalPrice=totalAmount
-        this.phoneNumber=phone
-        this.currentTime=time
-        this.itemPushKey=itemPushKey
-        this.orderAccepted=orderAccepted
-        this.paymentReceived=paymentReceived
+    ) : this() {
+        this.userUid = userId
+        this.userName = name
+        this.foodNames = fName
+        this.foodPrices = fPrice
+        this.foodImages = fImg
+        this.foodQty = fQty
+        this.address = address
+        this.totalPrice = totalAmount
+        this.phoneNumber = phone
+        this.currentTime = time
+        this.itemPushKey = itemPushKey
+        this.orderAccepted = orderAccepted
+        this.paymentReceived = paymentReceived
     }
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
+    fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(userUid)
         parcel.writeString(userName)
         parcel.writeString(address)
@@ -74,7 +75,7 @@ class OrderDetails() : Parcelable {
         parcel.writeLong(currentTime)
     }
 
-    override fun describeContents(): Int {
+    fun describeContents(): Int {
         return 0
     }
 
