@@ -11,7 +11,7 @@
         android:id="@+id/editProfileBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/search_shape"
+        android:background="@drawable/shape2"
         android:elevation="2dp"
         android:fontFamily="@font/yeonsung_regular"
         android:text="Edit Profile"
