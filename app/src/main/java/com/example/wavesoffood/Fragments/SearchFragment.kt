@@ -36,16 +36,23 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         // Inflate the layout for this fragment
         binding = FragmentSearchBinding.inflate(inflater, container, false)
 
         //retrieve menu item from database
         retrieveMenuItem()
 
+        showAllMenu()
         // show search items
         setUpSearchView()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        showAllMenu()
     }
 
     private fun retrieveMenuItem() {
@@ -81,7 +88,6 @@ class SearchFragment : Fragment() {
         adapter = MenuAdapter(filteredMenuItem, requireContext())
         binding.rvSearchMenu.layoutManager = LinearLayoutManager(requireContext())
         binding.rvSearchMenu.adapter = adapter
-
     }
 
     private fun setUpSearchView() {
@@ -99,14 +105,12 @@ class SearchFragment : Fragment() {
         })
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     private fun filterMenuItems(query: String?) {
         // Clear the filteredList
         val filteredMenuItems = originalMenuList.filter {
             it.foodName?.contains(query!!, ignoreCase = true) == true
         }
+        //Set Adapter
         setAdapter(filteredMenuItems)
-        // Update the adapter with the filteredList
-        adapter.notifyDataSetChanged()
     }
 }
