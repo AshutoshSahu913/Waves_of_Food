@@ -9,27 +9,13 @@
     android:orientation="vertical"
     tools:context=".Fragments.HistoryFragment">
 
-    <TextView
-        android:id="@+id/emptyTxt"
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/yeonsung_regular"
-        android:text="No Data"
-        android:textColor="@color/appColor"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/recentBuyItemLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -119,14 +105,19 @@
                     android:orientation="vertical"
                     android:padding="5dp">
 
-
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/orderStatus"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_margin="4dp"
-                        app:cardBackgroundColor="@color/appColor"
-                        app:cardCornerRadius="15dp" />
+                        app:cardCornerRadius="30dp">
+
+                        <ImageView
+                            android:id="@+id/orderStatus"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/appColor"
+                            android:scaleType="centerCrop" />
+                    </androidx.cardview.widget.CardView>
 
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -151,15 +142,16 @@
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/yeonsung_regular"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
+        android:fontFamily="@font/yeonsung_regular"
         android:text="@string/previously_buy"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recentBuyItemLayout" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHistory"
@@ -171,6 +163,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
         tools:listitem="@layout/buy_again_item" />
+
+    <ImageView
+        android:id="@+id/emptyImg"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/delivery"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/rvHistory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recentBuyItemLayout" />
+
+    <TextView
+        android:id="@+id/emptyTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/yeonsung_regular"
+        android:text="No Data"
+        android:textColor="@color/appColor"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emptyImg" />
 
     <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/loader2"

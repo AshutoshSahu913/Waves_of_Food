@@ -33,19 +33,23 @@
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="57dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="16dp"
             android:background="@drawable/edittextshape"
             app:boxStrokeWidth="0dp"
+            android:layout_marginTop="10dp"
+            app:counterTextColor="@color/appColor"
+            app:prefixTextColor="@color/appColor"
             app:boxStrokeWidthFocused="0dp"
             app:endIconDrawable="@drawable/arrow_down"
-            app:endIconTint="@color/black">
+            app:endIconTint="@color/appColor">
 
             <AutoCompleteTextView
+
                 android:id="@+id/listOfLocation"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:popupBackground="@color/white"
+                android:textColor="@color/appColor"
+                android:dropDownSelector="@drawable/custom_dropdown_selector"
                 android:fontFamily="@font/lato_regular"
                 android:inputType="none"
                 android:text="Choose Location"
@@ -66,7 +70,7 @@
         android:gravity="left"
         android:padding="5dp"
         android:text="@string/locationTxt"
-        android:textSize="17sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

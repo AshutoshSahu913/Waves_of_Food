@@ -56,6 +56,7 @@ class LoginPage : AppCompatActivity() {
             startActivity(Intent(this, SignUpPage::class.java))
         }
         binding.loginBtn.setOnClickListener {
+
             //get data from text Filed
             email = binding.inputEmail.text.toString().trim()
             password = binding.inputPassword.text.toString().trim()
@@ -67,6 +68,7 @@ class LoginPage : AppCompatActivity() {
             if (!(email.isBlank() || password.isBlank())) {
                 createUser()
                 Toast.makeText(this, "Login Successfully", Toast.LENGTH_SHORT).show()
+                binding.loginBtn.setBackgroundResource(R.drawable.un_shape)
                 startActivity(Intent(this, LocationActivity::class.java))
             } else {
                 if (email.isBlank()) {

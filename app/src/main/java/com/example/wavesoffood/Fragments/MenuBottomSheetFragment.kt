@@ -23,7 +23,8 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentMenuBottomSheetBinding
     private lateinit var database: FirebaseDatabase
-    private lateinit var menuList: MutableList<FoodModel>
+    private lateinit var menuLists: MutableList<FoodModel>
+//    private lateinit var adapterMenu: MenuAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,20 +40,19 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
         // Inflate the layout for this fragment
         binding = FragmentMenuBottomSheetBinding.inflate(inflater, container, false)
 
+        binding.backBtn.setOnClickListener {
+            dismiss()
+        }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         loader2()
         binding.loader2.visibility = View.VISIBLE
-
         setUpRecyclerView()
-        binding.backBtn.setOnClickListener {
-            dismiss()
-        }
+        setAdapter()
     }
 
     fun loader2() {
@@ -66,16 +66,15 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
         // add recycler view food items in bottom sheet drawable
         database = FirebaseDatabase.getInstance()
         val foodRef: DatabaseReference = database.reference.child("Menu")
-
-        menuList = mutableListOf()
+        menuLists = mutableListOf()
 
         foodRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (foodSnapshot in snapshot.children) {
                     val menuItem = foodSnapshot.getValue(FoodModel::class.java)
-                    menuItem?.let { menuList.add(it) }
+                    menuItem?.let { menuLists.add(it) }
                 }
-//                Log.d("ITEMS", "onDataChange:Data Received")
+//                Log.d("ITEMS", "onDataChange : Data Received $menuList")
                 // once data receive , set to adapter
                 setAdapter()
 
@@ -90,9 +89,9 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun setAdapter() {
-        if (menuList.isNotEmpty()) {
-            val adapter = MenuAdapter(menuList, requireContext())
+        if (menuLists.isNotEmpty()) {
             binding.loader2.visibility = View.GONE
+            val adapter = MenuAdapter(menuLists, requireContext())
             binding.rvMenu.layoutManager = LinearLayoutManager(requireContext())
             binding.rvMenu.adapter = adapter
             Log.d("ITEMS", "setAdapter: data set")
@@ -101,6 +100,4 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
         }
 
     }
-
-
 }

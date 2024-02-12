@@ -69,10 +69,22 @@ class HistoryFragment : Fragment() {
         loader2()
         binding.loader2.visibility = View.VISIBLE
         retrieveBuyHistory()
+
+        binding.receivedBtn.setOnClickListener {
+            binding.receivedBtn.text = "Confirm Order"
+            Toast.makeText(
+                requireContext(),
+                "Your order is confirmed, so please wait for delivery 🤩",
+                Toast.LENGTH_LONG
+            ).show()
+            updateOrderStatus()
+            binding.receivedBtn.setBackgroundResource(R.drawable.un_shape)
+            binding.receivedBtn.visibility = View.GONE
+        }
     }
 
     private fun retrieveBuyHistory() {
-        binding.recentBuyItemLayout.visibility = View.GONE
+
         userId = auth.currentUser?.uid ?: ""
 
         val buyItemReference: DatabaseReference =
@@ -92,17 +104,16 @@ class HistoryFragment : Fragment() {
 
                 if (listOfOrderItem.isNotEmpty()) {
                     binding.emptyTxt.visibility = View.GONE
+                    binding.emptyImg.visibility = View.GONE
+
 
                 } else {
                     binding.emptyTxt.visibility = View.VISIBLE
+                    binding.emptyImg.visibility = View.VISIBLE
                     binding.recentBuyItemLayout.visibility = View.GONE
-
                 }
-//                if (listOfOrderItem.isNotEmpty()) {
                 setDataInRecentBuyItem()
                 setPreviousBuyItemsRecyclerView()
-
-//                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -111,9 +122,8 @@ class HistoryFragment : Fragment() {
         })
     }
 
-    @SuppressLint("ResourceAsColor")
     private fun setDataInRecentBuyItem() {
-        binding.recentBuyItemLayout.visibility = View.VISIBLE
+
         val recentOrderItem = listOfOrderItem.firstOrNull()
         recentOrderItem?.let {
             with(binding) {
@@ -121,24 +131,18 @@ class HistoryFragment : Fragment() {
                 rFoodPrice.text = it.foodPrices?.firstOrNull() ?: ""
                 val img = it.foodImages?.firstOrNull() ?: ""
                 val uri = Uri.parse(img)
-                Glide.with(requireContext()).load(uri).into(rFoodImg)
+                Glide.with(this@HistoryFragment).load(uri).into(rFoodImg)
 //                listOfOrderItem.reverse()
-
+                binding.recentBuyItemLayout.visibility = View.VISIBLE
                 val isOrderAccepted = listOfOrderItem[0].orderAccepted
                 if (isOrderAccepted) {
-                    orderStatus.setCardBackgroundColor(R.color.appColor)
+                    orderStatus.setBackgroundResource(R.color.appColor)
                     receivedBtn.visibility = View.VISIBLE
                 } else {
-                    orderStatus.setCardBackgroundColor(R.color.defaultColor)
+                    orderStatus.setBackgroundResource(R.color.defaultColor)
                     receivedBtn.visibility = View.GONE
                 }
-                receivedBtn.setOnClickListener {
-                    receivedBtn.setBackgroundResource(R.drawable.un_shape)
-                    updateOrderStatus()
-                }
-
             }
-
         }
     }
 

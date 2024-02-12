@@ -11,9 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.wavesoffood.DataClass.FoodModel
 import com.example.wavesoffood.DetailsActivity
+import com.example.wavesoffood.R
 import com.example.wavesoffood.databinding.MenuItemBinding
 
-class MenuAdapter(private var menuList: List<FoodModel>, var requiredContext: Context) :
+class MenuAdapter(private var menuList: List<FoodModel>, var context: Context) :
     RecyclerView.Adapter<MenuAdapter.viewHolder>() {
     inner class viewHolder(var binding: MenuItemBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
@@ -28,7 +29,8 @@ class MenuAdapter(private var menuList: List<FoodModel>, var requiredContext: Co
         private fun openDetailsActivity(position: Int) {
             val menuItem = menuList[position]
             // a intent to open details Activity and pass data
-            val intent = Intent(requiredContext, DetailsActivity::class.java).apply {
+            val intent = Intent(context,
+                DetailsActivity::class.java).apply {
                 putExtra("menuItemName", menuItem.foodName)
                 putExtra("menuItemPrice", menuItem.foodPrice)
                 putExtra("menuItemDes", menuItem.foodDes)
@@ -36,7 +38,7 @@ class MenuAdapter(private var menuList: List<FoodModel>, var requiredContext: Co
                 putExtra("menuItemImg", menuItem.foodImg)
             }
             //start the details activity
-            requiredContext.startActivity(intent)
+            context.startActivity(intent)
         }
 
         //set data into recyclerView name, price, image
@@ -47,9 +49,10 @@ class MenuAdapter(private var menuList: List<FoodModel>, var requiredContext: Co
             binding.menuFoodPrice.text = "₹ ${model.foodPrice}"
 
             val uri = Uri.parse(model.foodImg)
-            Glide.with(requiredContext).load(uri).into(binding.menuFoodImg)
+            Glide.with(context).load(uri).into(binding.menuFoodImg)
 
             binding.menuAddToCartBtn.setOnClickListener {
+                binding.menuAddToCartBtn.setBackgroundResource(R.drawable.un_shape)
                 Toast.makeText(itemView.context, "Add Item To Cart", Toast.LENGTH_SHORT).show();
             }
 

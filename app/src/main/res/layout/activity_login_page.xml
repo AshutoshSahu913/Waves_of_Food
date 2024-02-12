@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:fontFamily="@font/lato_regular"
+            android:fontFamily="@font/lato_bold"
             android:text="@string/deliever_favorite_food"
             android:textColor="@color/appColor"
             android:textSize="12sp" />
@@ -156,6 +156,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/googleBtn"
             android:layout_width="152dp"
+
             android:layout_height="57dp"
             android:layout_margin="15dp"
             android:background="@drawable/whitebutton"
@@ -169,12 +170,12 @@
         android:id="@+id/linearLayout6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/loginBtn"
@@ -193,6 +194,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:fontFamily="@font/yeonsung_regular"
+            android:gravity="center"
+            android:padding="3dp"
             android:text="@string/don_t_have_account"
             android:textColor="@color/appColor"
             android:textSize="12sp" />

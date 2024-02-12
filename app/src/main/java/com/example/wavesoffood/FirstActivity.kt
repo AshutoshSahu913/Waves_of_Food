@@ -16,6 +16,7 @@ class FirstActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.nextBtn.setOnClickListener {
+            binding.nextBtn.setBackgroundResource(R.drawable.un_shape)
             startActivity(Intent(this, LoginPage::class.java))
         }
     }

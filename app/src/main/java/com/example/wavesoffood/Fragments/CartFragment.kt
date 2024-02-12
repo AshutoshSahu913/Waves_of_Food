@@ -6,12 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wavesoffood.Adapter.CartAdapter
 import com.example.wavesoffood.DataClass.CartItems
 import com.example.wavesoffood.PayOutActivity
+import com.example.wavesoffood.R
 import com.example.wavesoffood.databinding.FragmentCartBinding
+import com.github.ybq.android.spinkit.sprite.Sprite
+import com.github.ybq.android.spinkit.style.Circle
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -32,7 +36,7 @@ class CartFragment : Fragment() {
     private lateinit var cartFoodImages: MutableList<String>
     private lateinit var cartFoodQuantities: MutableList<Int>
     private lateinit var cartFoodIngredients: MutableList<String>
-    private lateinit var cartAdapter: CartAdapter
+    private lateinit var cartAdapter:CartAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +46,15 @@ class CartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loader()
+        binding.loader.visibility = View.VISIBLE
         retrieveCartItems()
+    }
+
+    private fun loader() {
+        val loader = binding.loader as ProgressBar
+        val circle: Sprite = Circle()
+        loader.indeterminateDrawable = circle
     }
 
     override fun onCreateView(
@@ -56,9 +68,11 @@ class CartFragment : Fragment() {
         database = FirebaseDatabase.getInstance()
         userId = auth.currentUser?.uid ?: ""
 
+        binding.proceedBtn.isEnabled = false
         binding.proceedBtn.setOnClickListener {
             //get order items details before proceeding to checkout
             getOrderItemsDetails()
+            binding.proceedBtn.setBackgroundResource(R.drawable.un_shape)
             Toast.makeText(context, "Proceed to pay", Toast.LENGTH_SHORT).show()
         }
         return binding.root
@@ -76,7 +90,6 @@ class CartFragment : Fragment() {
 
         //get items Quantities
         val foodQuantities = cartAdapter.getUpdatedItemQuantities()
-
 
         orderIdReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -164,21 +177,22 @@ class CartFragment : Fragment() {
                 //set the list items to adapter
 
                 //check the cartItems is empty or not
-//                if (cartFoodNames.isEmpty()) {
-//                    binding.rvCart.visibility = View.GONE
-//                    binding.emptyCart.visibility = View.VISIBLE
-//                } else {
-//                    binding.rvCart.visibility = View.VISIBLE
-//                    binding.emptyCart.visibility = View.GONE
-                setAdapter(
-                    cartFoodNames,
-                    cartFoodPrices,
-                    cartFoodDescription,
-                    cartFoodImages,
-                    cartFoodQuantities,
-                    cartFoodIngredients
-                )
-//                }
+                if (cartFoodNames.isEmpty()) {
+                    binding.rvCart.visibility = View.GONE
+                    binding.emptyCart.visibility = View.VISIBLE
+                    binding.loader.visibility = View.GONE
+                } else {
+                    binding.emptyCart.visibility = View.GONE
+                    binding.proceedBtn.isEnabled = true
+                    setAdapter(
+                        cartFoodNames,
+                        cartFoodPrices,
+                        cartFoodDescription,
+                        cartFoodImages,
+                        cartFoodQuantities,
+                        cartFoodIngredients
+                    )
+                }
 
             }
 
@@ -191,6 +205,7 @@ class CartFragment : Fragment() {
                 foodIngredients: MutableList<String>
             ) {
                 if (isAdded && context != null) {
+                    binding.loader.visibility = View.GONE
                     cartAdapter = CartAdapter(
                         requireContext(),
                         foodName,
@@ -200,6 +215,7 @@ class CartFragment : Fragment() {
                         foodQty,
                         foodIngredients
                     )
+
                     binding.rvCart.layoutManager = LinearLayoutManager(requireContext())
                     binding.rvCart.adapter = cartAdapter
                 }

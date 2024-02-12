@@ -50,7 +50,7 @@ class DetailsActivity : AppCompatActivity() {
 
         binding.addToCartBtn.setOnClickListener {
             binding.addToCartBtn.text = "Added to Cart"
-            binding.addToCartBtn.setBackgroundResource(R.drawable.greenbuttongradient2)
+            binding.addToCartBtn.setBackgroundResource(R.drawable.un_shape)
             addItemToCart()
         }
 

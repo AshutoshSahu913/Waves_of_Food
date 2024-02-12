@@ -33,11 +33,11 @@
 
         <ImageView
             android:id="@+id/emptyCart"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:src="@drawable/video_tape_svgrepo_com"
+            android:src="@drawable/shopping_cart_svgrepo_com"
             android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -47,21 +47,20 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="20dp"
-
             android:layout_marginBottom="10dp"
-            android:background="@drawable/edittextshape"
-            android:elevation="10dp"
+            android:background="@drawable/shape"
+            android:elevation="5dp"
             android:fontFamily="@font/yeonsung_regular"
             android:gravity="center"
             android:text="Proceed"
             android:textAllCaps="false"
-            android:textColor="@color/appColor"
-            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
 
     <com.github.ybq.android.spinkit.SpinKitView
-        android:id="@+id/loader2"
+        android:id="@+id/loader"
         style="@style/SpinKitView.Large.Circle"
         android:layout_width="wrap_content"
         android:visibility="gone"
