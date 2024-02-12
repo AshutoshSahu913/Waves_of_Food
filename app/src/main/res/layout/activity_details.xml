@@ -132,7 +132,8 @@
                 android:id="@+id/addToCartBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/greenbuttongradient"
@@ -142,9 +143,6 @@
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"/>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

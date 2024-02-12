@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,8 @@ import com.example.wavesoffood.Adapter.MenuAdapter
 import com.example.wavesoffood.DataClass.FoodModel
 import com.example.wavesoffood.R
 import com.example.wavesoffood.databinding.FragmentHomeBinding
+import com.github.ybq.android.spinkit.sprite.Sprite
+import com.github.ybq.android.spinkit.style.Circle
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -47,6 +50,8 @@ class HomeFragment : Fragment() {
         }
 
         //retrieve and display popular menu items
+        binding.loader1.visibility = View.VISIBLE
+        loader1()
         retrieveAndDisplayPopularItems()
 
         return binding.root
@@ -83,10 +88,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun setPopularItemAdapter(subsetMenuItems: List<FoodModel>) {
-        var adapter = MenuAdapter(subsetMenuItems, requireContext())
+        val adapter = MenuAdapter(subsetMenuItems, requireContext())
+        binding.loader1.visibility = View.GONE
         binding.rvPopularItem.layoutManager = LinearLayoutManager(requireContext())
         binding.rvPopularItem.adapter = adapter
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -101,7 +106,6 @@ class HomeFragment : Fragment() {
         imageSlider.setImageList(imageList)
         imageSlider.setImageList(imageList, ScaleTypes.FIT)
 
-
         imageSlider.setItemClickListener(object : ItemClickListener {
             override fun doubleClick(position: Int) {
             }
@@ -113,5 +117,11 @@ class HomeFragment : Fragment() {
             }
 
         })
+    }
+    fun loader1() {
+        // code for loader
+        val progressBar = binding.loader1 as ProgressBar
+        val circle: Sprite = Circle()
+        progressBar.indeterminateDrawable = circle
     }
 }

@@ -5,10 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wavesoffood.Adapter.MenuAdapter
 import com.example.wavesoffood.DataClass.FoodModel
 import com.example.wavesoffood.databinding.FragmentMenuBottomSheetBinding
+import com.github.ybq.android.spinkit.sprite.Sprite
+import com.github.ybq.android.spinkit.style.Circle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -41,10 +44,22 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        loader2()
+        binding.loader2.visibility = View.VISIBLE
+
         setUpRecyclerView()
         binding.backBtn.setOnClickListener {
             dismiss()
         }
+    }
+
+    fun loader2() {
+        // code for loader
+        val progressBar = binding.loader2 as ProgressBar
+        val circle: Sprite = Circle()
+        progressBar.indeterminateDrawable = circle
     }
 
     private fun setUpRecyclerView() {
@@ -60,7 +75,7 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
                     val menuItem = foodSnapshot.getValue(FoodModel::class.java)
                     menuItem?.let { menuList.add(it) }
                 }
-                Log.d("ITEMS", "onDataChange:Data Received")
+//                Log.d("ITEMS", "onDataChange:Data Received")
                 // once data receive , set to adapter
                 setAdapter()
 
@@ -77,6 +92,7 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
     private fun setAdapter() {
         if (menuList.isNotEmpty()) {
             val adapter = MenuAdapter(menuList, requireContext())
+            binding.loader2.visibility = View.GONE
             binding.rvMenu.layoutManager = LinearLayoutManager(requireContext())
             binding.rvMenu.adapter = adapter
             Log.d("ITEMS", "setAdapter: data set")

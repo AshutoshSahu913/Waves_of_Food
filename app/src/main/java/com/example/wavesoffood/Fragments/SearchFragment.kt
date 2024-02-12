@@ -6,11 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wavesoffood.Adapter.MenuAdapter
 import com.example.wavesoffood.DataClass.FoodModel
 import com.example.wavesoffood.databinding.FragmentSearchBinding
+import com.github.ybq.android.spinkit.sprite.Sprite
+import com.github.ybq.android.spinkit.style.Circle
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -41,6 +44,8 @@ class SearchFragment : Fragment() {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
 
         //retrieve menu item from database
+        loader2()
+        binding.loader2.visibility = View.VISIBLE
         retrieveMenuItem()
 
         showAllMenu()
@@ -68,19 +73,20 @@ class SearchFragment : Fragment() {
                         originalMenuList.add(it)
                     }
                 }
+                // Move setAdapter here after data is processed
                 showAllMenu()
             }
 
             override fun onCancelled(error: DatabaseError) {
 
             }
-
         })
     }
 
 
     private fun showAllMenu() {
         val filteredMenuItem = ArrayList(originalMenuList)
+        binding.loader2.visibility = View.GONE
         setAdapter(filteredMenuItem)
     }
 
@@ -112,5 +118,12 @@ class SearchFragment : Fragment() {
         }
         //Set Adapter
         setAdapter(filteredMenuItems)
+    }
+
+    fun loader2() {
+        // code for loader
+        val progressBar = binding.loader2 as ProgressBar
+        val circle: Sprite = Circle()
+        progressBar.indeterminateDrawable = circle
     }
 }

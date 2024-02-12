@@ -24,7 +24,7 @@ class RecentOrderItem : AppCompatActivity() {
             intent.getSerializableExtra("RecentBuyOrderItem") as ArrayList<OrderDetails>
         recentOrderItems?.let { orderDetails ->
             if (orderDetails.isNotEmpty()) {
-                var recentOrderItem = orderDetails[0]
+                val recentOrderItem = orderDetails[0]
                 allFoodNames = recentOrderItem.foodNames as ArrayList<String>
                 allFoodPrices = recentOrderItem.foodPrices as ArrayList<String>
                 allFoodImgs = recentOrderItem.foodImages as ArrayList<String>
@@ -37,15 +37,12 @@ class RecentOrderItem : AppCompatActivity() {
         binding.backBtn.setOnClickListener {
             finish()
         }
-
-
     }
 
     private fun setAdapter() {
-        var recentBuyAdapter =
+        val recentBuyAdapter =
             RecentBuyAdapter(this, allFoodNames, allFoodPrices, allFoodImgs, allFoodQty)
         binding.rvRecentBuy.layoutManager = LinearLayoutManager(this)
         binding.rvRecentBuy.adapter = recentBuyAdapter
-
     }
 }

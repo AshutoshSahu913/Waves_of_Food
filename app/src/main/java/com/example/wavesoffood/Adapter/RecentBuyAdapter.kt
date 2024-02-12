@@ -29,7 +29,6 @@ class RecentBuyAdapter(
                 val uri = Uri.parse(uriString)
                 Glide.with(context).load(uri).into(foodImg)
             }
-
         }
     }
 

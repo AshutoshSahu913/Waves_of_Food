@@ -61,4 +61,6 @@ dependencies {
 
     //glide library for image fetching from cloud
     implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    implementation ("com.github.ybq:Android-SpinKit:1.4.0")
 }

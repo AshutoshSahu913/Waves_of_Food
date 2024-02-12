@@ -1,5 +1,6 @@
 package com.example.wavesoffood.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.wavesoffood.DataClass.UserModel
+import com.example.wavesoffood.SignUpPage
 import com.example.wavesoffood.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -44,13 +46,16 @@ class ProfileFragment : Fragment() {
 
         binding.apply {
 
+            logoutBtn.setOnClickListener {
+                auth.signOut()
+                startActivity(Intent(requireContext(), SignUpPage::class.java))
+            }
 
             saveInfoBtn.setOnClickListener {
                 val name = binding.profileEdName.text.toString()
                 val email = binding.profileEdEmail.text.toString()
                 val address = binding.profileEdAddress.text.toString()
                 val phone = binding.profileEdPhone.text.toString()
-
                 updateUserData(name, email, address, phone)
             }
             profileEdName.isEnabled = false

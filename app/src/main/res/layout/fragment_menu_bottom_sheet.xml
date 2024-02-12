@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,37 +8,59 @@
     android:orientation="vertical"
     tools:context=".Fragments.MenuBottomSheetFragment">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_marginTop="10dp"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-    <ImageView
-        android:id="@+id/backBtn"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="10dp"
-
-        android:background="@android:color/transparent"
-        android:src="@drawable/arrow_left" />
-    <TextView
-
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/linearLayout17"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/yeonsung_regular"
-        android:gravity="center"
-        android:text="Menu Items"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
-</LinearLayout>
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+
+            android:background="@android:color/transparent"
+            android:src="@drawable/arrow_left" />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/yeonsung_regular"
+            android:gravity="center"
+            android:text="Menu Items"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+    </LinearLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMenu"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp" />
-</LinearLayout>
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout17" />
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/loader2"
+        style="@style/SpinKitView.Large.Circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center_vertical"
+        app:SpinKit_Color="@color/appColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout17" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

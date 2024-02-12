@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,11 +9,30 @@
     android:orientation="vertical"
     tools:context=".Fragments.HistoryFragment">
 
+    <TextView
+        android:id="@+id/emptyTxt"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/yeonsung_regular"
+        android:text="No Data"
+        android:textColor="@color/appColor"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/recentBuyItemLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
@@ -64,10 +83,9 @@
                 </androidx.cardview.widget.CardView>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
@@ -95,19 +113,34 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="5dp">
 
 
                     <androidx.cardview.widget.CardView
-
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:id="@+id/orderStatus"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="4dp"
                         app:cardBackgroundColor="@color/appColor"
-                        app:cardCornerRadius="20dp" />
+                        app:cardCornerRadius="15dp" />
 
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/receivedBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:background="@drawable/addtocartshape"
+                        android:fontFamily="@font/yeonsung_regular"
+                        android:text="Received"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -116,21 +149,40 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/textView9"
         android:layout_width="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
         android:fontFamily="@font/yeonsung_regular"
+        android:layout_marginTop="5dp"
         android:text="@string/previously_buy"
         android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recentBuyItemLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHistory"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
         android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
         tools:listitem="@layout/buy_again_item" />
 
-</LinearLayout>
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/loader2"
+        style="@style/SpinKitView.Large.Circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:visibility="gone"
+        app:SpinKit_Color="@color/appColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rvHistory" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

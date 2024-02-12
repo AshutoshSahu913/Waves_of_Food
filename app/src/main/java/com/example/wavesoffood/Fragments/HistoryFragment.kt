@@ -1,20 +1,29 @@
 package com.example.wavesoffood.Fragments
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.core.app.ActivityCompat.OnRequestPermissionsResultCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.wavesoffood.Adapter.BuyAgainAdapter
+import com.example.wavesoffood.DataClass.CartItems
 import com.example.wavesoffood.DataClass.FoodModel
 import com.example.wavesoffood.DataClass.OrderDetails
+import com.example.wavesoffood.R
 import com.example.wavesoffood.RecentOrderItem
 import com.example.wavesoffood.databinding.FragmentHistoryBinding
+import com.github.ybq.android.spinkit.sprite.Sprite
+import com.github.ybq.android.spinkit.style.Circle
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -42,30 +51,24 @@ class HistoryFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
 
-
         //initialize firebase auth
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
-
-        //Retrieve and display the user order history
-        retrieveBuyHistory()
 
         binding.recentBuyItemCart.setOnClickListener {
             seeItemRecentBuy()
         }
 
-
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    //function to see items recent buy
-    private fun seeItemRecentBuy() {
-        listOfOrderItem.firstOrNull()?.let {
-            var intent = Intent(requireContext(), RecentOrderItem::class.java)
-            intent.putExtra("RecentBuyOrderItem", listOfOrderItem)
-            startActivity(intent)
-        }
+        //Retrieve and display the user order history
+        loader2()
+        binding.loader2.visibility = View.VISIBLE
+        retrieveBuyHistory()
     }
 
     private fun retrieveBuyHistory() {
@@ -86,20 +89,29 @@ class HistoryFragment : Fragment() {
                     }
                 }
                 listOfOrderItem.reverse()
+
                 if (listOfOrderItem.isNotEmpty()) {
-                    setDataInRecentBuyItem()
-                    setPreviousBuyItemsRecyclerView()
+                    binding.emptyTxt.visibility = View.GONE
+
+                } else {
+                    binding.emptyTxt.visibility = View.VISIBLE
+                    binding.recentBuyItemLayout.visibility = View.GONE
+
                 }
+//                if (listOfOrderItem.isNotEmpty()) {
+                setDataInRecentBuyItem()
+                setPreviousBuyItemsRecyclerView()
+
+//                }
             }
 
             override fun onCancelled(error: DatabaseError) {
 
             }
-
         })
-
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun setDataInRecentBuyItem() {
         binding.recentBuyItemLayout.visibility = View.VISIBLE
         val recentOrderItem = listOfOrderItem.firstOrNull()
@@ -110,10 +122,23 @@ class HistoryFragment : Fragment() {
                 val img = it.foodImages?.firstOrNull() ?: ""
                 val uri = Uri.parse(img)
                 Glide.with(requireContext()).load(uri).into(rFoodImg)
-                listOfOrderItem.reverse()
-//                if (listOfOrderItem.isNotEmpty()) {
-//                }
+//                listOfOrderItem.reverse()
+
+                val isOrderAccepted = listOfOrderItem[0].orderAccepted
+                if (isOrderAccepted) {
+                    orderStatus.setCardBackgroundColor(R.color.appColor)
+                    receivedBtn.visibility = View.VISIBLE
+                } else {
+                    orderStatus.setCardBackgroundColor(R.color.defaultColor)
+                    receivedBtn.visibility = View.GONE
+                }
+                receivedBtn.setOnClickListener {
+                    receivedBtn.setBackgroundResource(R.drawable.un_shape)
+                    updateOrderStatus()
+                }
+
             }
+
         }
     }
 
@@ -129,9 +154,31 @@ class HistoryFragment : Fragment() {
         }
         val rv = binding.rvHistory
         rv.layoutManager = LinearLayoutManager(requireContext())
+        binding.loader2.visibility = View.GONE
         buyAgainAdapter =
             BuyAgainAdapter(buyAgainFoodName, buyAgainFoodPrice, buyAgainFoodImg, requireContext())
         rv.adapter = buyAgainAdapter
     }
 
+    private fun updateOrderStatus() {
+        val itemPushKey = listOfOrderItem[0].itemPushKey
+        val completeOrderReference = database.reference.child("CompletedOrder").child(itemPushKey!!)
+        completeOrderReference.child("paymentReceived").setValue(true)
+    }
+
+    //function to see items recent buy
+    private fun seeItemRecentBuy() {
+        listOfOrderItem.firstOrNull()?.let {
+            val intent = Intent(requireContext(), RecentOrderItem::class.java)
+            intent.putExtra("RecentBuyOrderItem", listOfOrderItem)
+            startActivity(intent)
+        }
+    }
+
+    fun loader2() {
+        // code for loader
+        val progressBar = binding.loader2 as ProgressBar
+        val circle: Sprite = Circle()
+        progressBar.indeterminateDrawable = circle
+    }
 }

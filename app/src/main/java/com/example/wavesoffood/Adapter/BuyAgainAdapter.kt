@@ -39,10 +39,10 @@ class BuyAgainAdapter(
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-
             }
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BuyAgainAdapter.viewHolder {
         val binding =
