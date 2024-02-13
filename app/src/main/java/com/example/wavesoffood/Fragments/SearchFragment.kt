@@ -22,7 +22,6 @@ import com.google.firebase.database.ValueEventListener
 
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
-
     private lateinit var adapter: MenuAdapter
     private lateinit var database: FirebaseDatabase
 
@@ -48,7 +47,7 @@ class SearchFragment : Fragment() {
         binding.loader2.visibility = View.VISIBLE
         retrieveMenuItem()
 
-        showAllMenu()
+//        showAllMenu()
         // show search items
         setUpSearchView()
 
@@ -85,7 +84,7 @@ class SearchFragment : Fragment() {
 
 
     private fun showAllMenu() {
-        val filteredMenuItem = ArrayList(originalMenuList)
+        var filteredMenuItem = ArrayList(originalMenuList)
         binding.loader2.visibility = View.GONE
         setAdapter(filteredMenuItem)
     }

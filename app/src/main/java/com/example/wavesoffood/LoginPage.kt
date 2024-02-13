@@ -4,11 +4,15 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.wavesoffood.DataClass.UserModel
 import com.example.wavesoffood.databinding.ActivityFirstBinding
 import com.example.wavesoffood.databinding.ActivityLoginPageBinding
+import com.github.ybq.android.spinkit.sprite.Sprite
+import com.github.ybq.android.spinkit.style.Circle
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -34,6 +38,13 @@ class LoginPage : AppCompatActivity() {
         ActivityLoginPageBinding.inflate(layoutInflater)
     }
 
+    private fun loader() {
+        val loader = binding.loader as ProgressBar
+        val circle: Sprite = Circle()
+        loader.indeterminateDrawable = circle
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -41,6 +52,8 @@ class LoginPage : AppCompatActivity() {
 
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.your_web_client_id)).requestEmail().build()
+
+        loader()
 
         //Initialization of Firebase Auth
         auth = Firebase.auth
@@ -56,7 +69,7 @@ class LoginPage : AppCompatActivity() {
             startActivity(Intent(this, SignUpPage::class.java))
         }
         binding.loginBtn.setOnClickListener {
-
+            binding.loader.visibility= View.VISIBLE
             //get data from text Filed
             email = binding.inputEmail.text.toString().trim()
             password = binding.inputPassword.text.toString().trim()
@@ -66,9 +79,10 @@ class LoginPage : AppCompatActivity() {
 
 
             if (!(email.isBlank() || password.isBlank())) {
-                createUser()
                 Toast.makeText(this, "Login Successfully", Toast.LENGTH_SHORT).show()
                 binding.loginBtn.setBackgroundResource(R.drawable.un_shape)
+                binding.loader.visibility= View.GONE
+                createUser()
                 startActivity(Intent(this, LocationActivity::class.java))
             } else {
                 if (email.isBlank()) {
@@ -84,6 +98,7 @@ class LoginPage : AppCompatActivity() {
         }
 
         binding.googleBtn.setOnClickListener {
+            binding.loader.visibility= View.VISIBLE
             val signInIntent = googleSignInClient.signInIntent
             launcher.launch(signInIntent)
 
@@ -100,6 +115,7 @@ class LoginPage : AppCompatActivity() {
                     val account: GoogleSignInAccount? = task.result
                     val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
                     if (task.isSuccessful) {
+                        binding.loader.visibility= View.GONE
                         startActivity(Intent(this, HomePage::class.java))
                         finish()
                     } else {
@@ -122,6 +138,7 @@ class LoginPage : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         saveUserData()
+
                         val user = auth.currentUser
                         updateUI(user)
                     } else {

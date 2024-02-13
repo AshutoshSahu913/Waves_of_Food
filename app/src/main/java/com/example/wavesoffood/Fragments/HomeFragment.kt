@@ -45,6 +45,7 @@ class HomeFragment : Fragment() {
         //retrieve and display popular menu items
         binding.loader1.visibility = View.VISIBLE
         loader1()
+
         retrieveAndDisplayPopularItems()
 
         return binding.root
@@ -64,9 +65,19 @@ class HomeFragment : Fragment() {
                     val menuItem = foodSnapshot.getValue(FoodModel::class.java)
                     menuItem?.let { menuList.add(it) }
                 }
-                //display a random popular items
-                randomPopularItems()
+
+                if (menuList.isNotEmpty()) {
+                    binding.emptyFoodItem.visibility = View.GONE
+
+                    //display a random popular items
+                    randomPopularItems()
+                } else {
+                    binding.loader1.visibility=View.GONE
+                    binding.emptyFoodItem.visibility = View.VISIBLE
+                }
+
             }
+
             override fun onCancelled(error: DatabaseError) {
 
             }
@@ -91,7 +102,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         //for AllViewItems
         binding.viewAllMenuTxt.setOnClickListener {
             val bottomSheetFragment = MenuBottomSheetFragment()
@@ -113,13 +123,14 @@ class HomeFragment : Fragment() {
             }
 
             override fun onItemSelected(position: Int) {
-                val itemPosition = imageList[position]
+//                val itemPosition = imageList[position]
                 val itemMessage = "Selected Image $position"
                 Toast.makeText(requireContext(), itemMessage, Toast.LENGTH_SHORT).show()
             }
 
         })
     }
+
     fun loader1() {
         // code for loader
         val progressBar = binding.loader1 as ProgressBar

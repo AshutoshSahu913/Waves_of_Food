@@ -14,7 +14,6 @@ class FirstActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
         binding.nextBtn.setOnClickListener {
             binding.nextBtn.setBackgroundResource(R.drawable.un_shape)
             startActivity(Intent(this, LoginPage::class.java))
